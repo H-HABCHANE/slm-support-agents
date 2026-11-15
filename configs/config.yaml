@@ -1,0 +1,41 @@
+# Configuration centrale du projet. Tous les modèles tournent en local (aucune API externe).
+seed: 42
+
+data:
+  dataset: bitext/Bitext-customer-support-llm-chatbot-training-dataset
+  test_size: 0.15        # part du dataset Bitext gardée pour le test
+  val_size: 0.05
+  realistic_tickets: data/eval/realistic_tickets.jsonl   # tickets réalistes écrits à la main (hors distribution)
+
+kb:
+  dir: data/kb                       # base de connaissances : fichiers .md + .pdf
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  chunk_size: 700
+  chunk_overlap: 100
+  top_k: 3
+
+classifier:
+  base_model: Qwen/Qwen2.5-0.5B      # SLM fine-tuné en LoRA pour la classification d'intention
+  adapter_dir: models/lora-intent    # adaptateur LoRA (produit par le notebook Colab)
+  baseline_path: models/baseline_tfidf.joblib
+  max_length: 128
+  agent_classifier: tfidf      # tfidf | tfidf_aug | lora | lora_aug (choisi d'après reports/classification.json)
+
+llm:
+  # SLM génératif utilisé par les agents (réponse et vérification)
+  model: Qwen/Qwen2.5-1.5B-Instruct
+  max_new_tokens: 200
+  temperature: 0.0
+
+agent:
+  max_retries: 1
+  verifier: nli                # nli (contrôle des chiffres + DeBERTa NLI) ou llm_judge
+  min_confidence: 0.5          # en dessous : escalade vers un humain
+  escalate_intents: [contact_human_agent, complaint]
+
+eval:
+  candidate_llms:
+    - HuggingFaceTB/SmolLM2-360M-Instruct
+    - Qwen/Qwen2.5-0.5B-Instruct
+    - Qwen/Qwen2.5-1.5B-Instruct
+  n_tickets: 27                # un ticket réaliste par intention

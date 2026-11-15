@@ -1,0 +1,54 @@
+{"id": "R01", "text": "Hi, I placed an order yesterday evening for a coffee machine but my husband already bought one. Can I still stop it before it ships? Order NS-551203.", "intent": "cancel_order"}
+{"id": "R02", "text": "pls dont send my order NS-220931 anymore, i changed my mind, i dont want it", "intent": "cancel_order"}
+{"id": "R03", "text": "I ordered the blue backpack but I actually wanted the black one, same size. The order is NS-303112, is it too late to swap the colour?", "intent": "change_order"}
+{"id": "R04", "text": "Can I add a second phone case to the order I made this morning instead of paying shipping twice?", "intent": "change_order"}
+{"id": "R05", "text": "I just realised my order is going to my old flat. I moved last week! Can you send it to 12 rue Victor Hugo, Lyon instead?", "intent": "change_shipping_address"}
+{"id": "R06", "text": "wrong address on order NS-778120, the street number is 14 not 41, can it be fixed before delivery", "intent": "change_shipping_address"}
+{"id": "R07", "text": "If I cancel the engraved watch I ordered, will I have to pay something? Production may have started already.", "intent": "check_cancellation_fee"}
+{"id": "R08", "text": "Is there any penalty for cancelling an order? I don't want surprises on my card.", "intent": "check_cancellation_fee"}
+{"id": "R09", "text": "The invoice for order NS-640021 says 89.90 but I paid 79.90 with a promo code. Can you check why the amount is different?", "intent": "check_invoice"}
+{"id": "R10", "text": "I got two invoices for one order, is that normal? I'm confused about which one to give my accountant.", "intent": "check_invoice"}
+{"id": "R11", "text": "Do you take PayPal? My bank card is blocked and I really want to order today.", "intent": "check_payment_methods"}
+{"id": "R12", "text": "Hello, can I pay in several times for a sofa that costs 600 euros?", "intent": "check_payment_methods"}
+{"id": "R13", "text": "I bought a jacket 3 weeks ago, I wore it once and it's too small. Can I still send it back and get my money?", "intent": "check_refund_policy"}
+{"id": "R14", "text": "what's your return policy for opened software? the licence doesn't work on my mac", "intent": "check_refund_policy"}
+{"id": "R15", "text": "This is the third time my delivery is late and nobody answers my emails. I am really disappointed with your service and I want this escalated.", "intent": "complaint"}
+{"id": "R16", "text": "Your delivery guy left my parcel in the rain in front of the building and the box was destroyed. Unacceptable!!", "intent": "complaint"}
+{"id": "R17", "text": "What are your opening hours? I tried calling at 7pm and nobody picked up.", "intent": "contact_customer_service"}
+{"id": "R18", "text": "How do I reach your support team? I can't find a phone number anywhere on the website.", "intent": "contact_customer_service"}
+{"id": "R19", "text": "I don't want to talk to a bot. Please put me through to a real person.", "intent": "contact_human_agent"}
+{"id": "R20", "text": "can a human look at my case please, the automatic answers don't help at all", "intent": "contact_human_agent"}
+{"id": "R21", "text": "I'd like to open an account so I can follow my orders more easily, how do I do that?", "intent": "create_account"}
+{"id": "R22", "text": "Is it possible to sign up with my work email? I want a separate profile for office supplies.", "intent": "create_account"}
+{"id": "R23", "text": "Please remove my account and all my data, I won't be shopping with you anymore.", "intent": "delete_account"}
+{"id": "R24", "text": "How can I close my NovaShop account? I have no order in progress.", "intent": "delete_account"}
+{"id": "R25", "text": "Do you deliver to pickup points? I'm never home during the day.", "intent": "delivery_options"}
+{"id": "R26", "text": "Can you ship to Belgium, and is there an express option?", "intent": "delivery_options"}
+{"id": "R27", "text": "If I order now, will I receive the package before Saturday with standard shipping?", "intent": "delivery_period"}
+{"id": "R28", "text": "How many days does delivery usually take to Marseille?", "intent": "delivery_period"}
+{"id": "R29", "text": "I got married and changed my last name, how do I update it on my profile?", "intent": "edit_account"}
+{"id": "R30", "text": "need to change the phone number on my account, the old one is not mine anymore", "intent": "edit_account"}
+{"id": "R31", "text": "My company needs an invoice for the laptop I bought last month, where can I download it?", "intent": "get_invoice"}
+{"id": "R32", "text": "I ordered as a guest and never received any invoice. Can you send it to me?", "intent": "get_invoice"}
+{"id": "R33", "text": "The toaster I received doesn't heat at all. I want my money back, not a replacement.", "intent": "get_refund"}
+{"id": "R34", "text": "I'd like to return the shoes from order NS-990341 and be reimbursed please.", "intent": "get_refund"}
+{"id": "R35", "text": "Stop sending me promotional emails every day, how do I unsubscribe?", "intent": "newsletter_subscription"}
+{"id": "R36", "text": "I'd like to get your newsletter to hear about the sales first.", "intent": "newsletter_subscription"}
+{"id": "R37", "text": "I was charged twice for order NS-412876! Two identical payments of 54.90 on my bank statement.", "intent": "payment_issue"}
+{"id": "R38", "text": "My card keeps getting refused at checkout even though there's money on the account. What's going on?", "intent": "payment_issue"}
+{"id": "R39", "text": "Can I order without creating an account? I just want to buy one thing quickly.", "intent": "place_order"}
+{"id": "R40", "text": "I want to buy 3 office chairs for my team, how do I place the order?", "intent": "place_order"}
+{"id": "R41", "text": "I forgot my password and the reset email never arrives.", "intent": "recover_password"}
+{"id": "R42", "text": "locked out of my account, cant remember the password i used", "intent": "recover_password"}
+{"id": "R43", "text": "Every time I try to sign up it says my email is already in use but I never created an account!", "intent": "registration_problems"}
+{"id": "R44", "text": "The confirmation link in the sign-up email says it has expired. What do I do?", "intent": "registration_problems"}
+{"id": "R45", "text": "I want to leave a review for the vacuum cleaner I received, it's amazing.", "intent": "review"}
+{"id": "R46", "text": "Where can I rate the delivery service? The driver was really nice.", "intent": "review"}
+{"id": "R47", "text": "How do I save a second delivery address for my parents' house in my account?", "intent": "set_up_shipping_address"}
+{"id": "R48", "text": "I want to add my office as default shipping address.", "intent": "set_up_shipping_address"}
+{"id": "R49", "text": "I have a personal and a business account with you, how do I go from one to the other?", "intent": "switch_account"}
+{"id": "R50", "text": "I logged in with the wrong account, how can I switch to my other profile?", "intent": "switch_account"}
+{"id": "R51", "text": "Where is my order NS-128840? It was supposed to arrive yesterday.", "intent": "track_order"}
+{"id": "R52", "text": "Can I follow my parcel? I ordered as a guest and didn't keep the email.", "intent": "track_order"}
+{"id": "R53", "text": "I returned an item two weeks ago and still haven't seen the refund on my card. Can you check?", "intent": "track_refund"}
+{"id": "R54", "text": "Has my refund for order NS-337102 been processed yet?", "intent": "track_refund"}

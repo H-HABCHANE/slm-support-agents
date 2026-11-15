@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "support-agent"
+version = "0.1.0"
+description = "Agents IA de support client sur petits modèles de langage (SLM) locaux : LangGraph, RAG LangChain, fine-tuning LoRA."
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "pyyaml",
+    "torch",
+    "transformers>=5",
+    "peft",
+    "accelerate",
+    "datasets",
+    "sentence-transformers",
+    "langchain-core",
+    "langchain-huggingface",
+    "langgraph",
+    "pypdf",
+    "rapidocr-onnxruntime",
+    "pillow",
+    "scikit-learn",
+    "psutil",
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "httpx", "reportlab"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI déclare ses paramètres de formulaire par des valeurs par défaut (usage normal)
+extend-immutable-calls = ["fastapi.File", "fastapi.Form"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: télécharge un petit modèle NLI (environ 70 Mo)"]

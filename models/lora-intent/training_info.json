@@ -1,0 +1,13 @@
+{
+  "base_model": "Qwen/Qwen2.5-0.5B",
+  "n_train": 4000,
+  "n_val": 500,
+  "epochs": 1.0,
+  "lora_rank": 16,
+  "trainable_params": 2186880,
+  "total_params": 496243840,
+  "train_time_s": 869.8,
+  "device": "cpu",
+  "val_accuracy": 0.984,
+  "val_macro_f1": 0.9839791809547064
+}

@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Installer les dépendances (PyTorch CPU)
+        run: |
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install -e ".[dev]"
+      - name: Lint (ruff)
+        run: ruff check .
+      - name: Tests (modèles factices, aucun téléchargement de SLM)
+        run: pytest -q
