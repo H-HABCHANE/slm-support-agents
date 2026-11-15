@@ -17,6 +17,7 @@ dependencies = [
     "datasets",
     "sentence-transformers",
     "langchain-core",
+    "langchain-text-splitters",
     "langchain-huggingface",
     "langgraph",
     "pypdf",
