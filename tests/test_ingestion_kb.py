@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+from langchain_core.documents import Document
 
 from support_agent.classifier import TfidfClassifier, parse_intent
 from support_agent.ingestion import clean_text, detect_modality, load_file
@@ -70,3 +71,20 @@ def test_tfidf_classifier_roundtrip(tmp_path):
     clf.save(tmp_path / "m.joblib")
     pred, conf = TfidfClassifier.load(tmp_path / "m.joblib").predict(["where is my order"])[0]
     assert pred == "track_order" and 0 < conf <= 1
+
+
+def test_rerank_retriever_reorders_candidates():
+    from langchain_core.embeddings import DeterministicFakeEmbedding
+    from langchain_core.vectorstores import InMemoryVectorStore
+
+    from support_agent.kb import RerankRetriever
+
+    docs = [Document(page_content=f"passage {i}", metadata={"intent": f"i{i}"}) for i in range(5)]
+    store = InMemoryVectorStore.from_documents(docs, DeterministicFakeEmbedding(size=16))
+
+    class FakeReranker:  # score = numéro du passage : le passage 4 doit sortir en premier
+        def predict(self, pairs):
+            return [int(p[1].split()[-1]) for p in pairs]
+
+    out = RerankRetriever(store=store, reranker=FakeReranker(), fetch_k=5, k=2).invoke("q")
+    assert [d.metadata["intent"] for d in out] == ["i4", "i3"]

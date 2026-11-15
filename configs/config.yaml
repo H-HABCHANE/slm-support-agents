@@ -13,6 +13,9 @@ kb:
   chunk_size: 700
   chunk_overlap: 100
   top_k: 3
+  rerank: false                # reranking par cross-encoder (voir reports/retrieval.json)
+  rerank_model: cross-encoder/ms-marco-MiniLM-L-6-v2
+  fetch_k: 10                  # candidats remontés par la recherche vectorielle avant reranking
 
 classifier:
   base_model: Qwen/Qwen2.5-0.5B      # SLM fine-tuné en LoRA pour la classification d'intention
