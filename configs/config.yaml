@@ -22,7 +22,7 @@ classifier:
   adapter_dir: models/lora-intent    # adaptateur LoRA (produit par le notebook Colab)
   baseline_path: models/baseline_tfidf.joblib
   max_length: 128
-  agent_classifier: tfidf      # tfidf | tfidf_aug | lora | lora_aug (choisi d'après reports/classification.json)
+  agent_classifier: lora_aug      # tfidf | tfidf_aug | lora | lora_aug (choisi d'après reports/classification.json)
 
 llm:
   # SLM génératif utilisé par les agents (réponse et vérification)

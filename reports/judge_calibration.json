@@ -1,0 +1,66 @@
+[
+  {
+    "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "prompt": "verify (SUPPORTED / NOT_SUPPORTED)",
+    "accepts_faithful": 0.211,
+    "rejects_corrupted": 0.895,
+    "balanced_accuracy": 0.553,
+    "n": 38
+  },
+  {
+    "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "prompt": "error? (YES / NO)",
+    "accepts_faithful": 0.632,
+    "rejects_corrupted": 0.316,
+    "balanced_accuracy": 0.474,
+    "n": 38
+  },
+  {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "prompt": "verify (SUPPORTED / NOT_SUPPORTED)",
+    "accepts_faithful": 0.0,
+    "rejects_corrupted": 1.0,
+    "balanced_accuracy": 0.5,
+    "n": 38
+  },
+  {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "prompt": "error? (YES / NO)",
+    "accepts_faithful": 0.0,
+    "rejects_corrupted": 0.737,
+    "balanced_accuracy": 0.368,
+    "n": 38
+  },
+  {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "prompt": "verify (SUPPORTED / NOT_SUPPORTED)",
+    "accepts_faithful": 0.895,
+    "rejects_corrupted": 1.0,
+    "balanced_accuracy": 0.947,
+    "n": 38
+  },
+  {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "prompt": "error? (YES / NO)",
+    "accepts_faithful": 1.0,
+    "rejects_corrupted": 0.632,
+    "balanced_accuracy": 0.816,
+    "n": 38
+  },
+  {
+    "model": "cross-encoder/nli-deberta-v3-xsmall",
+    "prompt": "NLI DeBERTa-v3-xsmall seul",
+    "accepts_faithful": 1.0,
+    "rejects_corrupted": 1.0,
+    "balanced_accuracy": 1.0,
+    "n": 38
+  },
+  {
+    "model": "cross-encoder/nli-deberta-v3-xsmall",
+    "prompt": "NLI + contrôle des chiffres",
+    "accepts_faithful": 1.0,
+    "rejects_corrupted": 1.0,
+    "balanced_accuracy": 1.0,
+    "n": 38
+  }
+]

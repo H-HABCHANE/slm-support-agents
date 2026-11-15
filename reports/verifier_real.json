@@ -1,0 +1,66 @@
+{
+  "n": 15,
+  "n_faithful": 11,
+  "source": "reports/agent_Qwen2.5-1.5B-Instruct.json",
+  "verifiers": {
+    "xsmall : NLI + chiffres (toutes prémisses)": {
+      "accepts_faithful": 0.273,
+      "rejects_wrong": 1.0,
+      "balanced_accuracy": 0.636,
+      "wrongly_rejected": [
+        "R01",
+        "R11",
+        "R13",
+        "R29",
+        "R31",
+        "R41",
+        "R43",
+        "R45"
+      ],
+      "wrongly_accepted": []
+    },
+    "xsmall : NLI + chiffres + prémisses proches": {
+      "accepts_faithful": 0.727,
+      "rejects_wrong": 0.5,
+      "balanced_accuracy": 0.614,
+      "wrongly_rejected": [
+        "R01",
+        "R29",
+        "R41"
+      ],
+      "wrongly_accepted": [
+        "R09",
+        "R33"
+      ]
+    },
+    "base : NLI + chiffres (toutes prémisses)": {
+      "accepts_faithful": 0.455,
+      "rejects_wrong": 0.75,
+      "balanced_accuracy": 0.602,
+      "wrongly_rejected": [
+        "R01",
+        "R11",
+        "R13",
+        "R29",
+        "R41",
+        "R43"
+      ],
+      "wrongly_accepted": [
+        "R39"
+      ]
+    },
+    "base : NLI + chiffres + prémisses proches": {
+      "accepts_faithful": 0.818,
+      "rejects_wrong": 0.5,
+      "balanced_accuracy": 0.659,
+      "wrongly_rejected": [
+        "R01",
+        "R29"
+      ],
+      "wrongly_accepted": [
+        "R33",
+        "R39"
+      ]
+    }
+  }
+}

@@ -19,11 +19,13 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
 NUMBER_RE = re.compile(r"\d+(?:[.,]\d+)?")
+LIST_MARKER_RE = re.compile(r"^\s*\d+[.)]\s+", re.MULTILINE)  # « 1. », « 2) » en début de ligne
 SENTENCE_RE = re.compile(r"(?<=[.!?])\s+|\n+")
 
 
 def numbers(text: str) -> set[str]:
-    return {n.replace(",", ".") for n in NUMBER_RE.findall(text)}
+    """Chiffres d'un texte, hors numéros d'une liste numérotée."""
+    return {n.replace(",", ".") for n in NUMBER_RE.findall(LIST_MARKER_RE.sub("", text))}
 
 
 def split_sentences(text: str) -> list[str]:
@@ -38,7 +40,7 @@ def unsupported_numbers(answer: str, docs: list[Document], ticket: str = "") -> 
     return numbers(answer) - allowed
 
 
-@lru_cache(maxsize=1)
+@lru_cache(maxsize=2)
 def _nli_model(model_name: str):
     from sentence_transformers import CrossEncoder
 
@@ -49,8 +51,12 @@ class NLIVerifier:
     name = "nli"
 
     def __init__(self, model_name: str = "cross-encoder/nli-deberta-v3-xsmall", threshold: float = 0.5,
-                 check_numbers: bool = True):
+                 check_numbers: bool = True, embeddings=None, top_premises: int = 3):
         self.model_name, self.threshold, self.check_numbers = model_name, threshold, check_numbers
+        # Une contradiction ne compte que si elle vient d'une des `top_premises` prémisses les plus proches
+        # de la phrase (similarité d'embeddings) : un petit modèle NLI « contredit » volontiers une phrase
+        # par un passage hors sujet (ex. une formule de politesse contre les CGV). None = toutes les prémisses.
+        self.embeddings, self.top_premises = embeddings, top_premises
 
     def contradicted_sentences(self, answer: str, docs: list[Document]) -> list[tuple[str, float]]:
         model = _nli_model(self.model_name)
@@ -67,13 +73,25 @@ class NLIVerifier:
             premises += [f"{a} {b}" for a, b in zip(doc_sents, doc_sents[1:], strict=False)]
         pairs = [(p, s) for s in sentences for p in premises]
         probs = model.predict(pairs, apply_softmax=True, batch_size=64).reshape(len(sentences), len(premises), -1)
+        relevant = self._relevant_premises(sentences, premises)
         flagged = []
-        for s, p in zip(sentences, probs, strict=True):
-            contra, entail = p[:, labels["contradiction"]].max(), p[:, labels["entailment"]].max()
+        for s, p, idx in zip(sentences, probs, relevant, strict=True):
+            contra, entail = p[idx, labels["contradiction"]].max(), p[:, labels["entailment"]].max()
             # contredite par une prémisse et impliquée par aucune
             if contra > self.threshold and entail < self.threshold:
                 flagged.append((s, float(contra)))
         return flagged
+
+    def _relevant_premises(self, sentences: list[str], premises: list[str]):
+        """Indices des prémisses les plus proches de chaque phrase (toutes si pas d'embeddings)."""
+        import numpy as np
+
+        if self.embeddings is None or not self.top_premises:
+            return [slice(None)] * len(sentences)
+        s_emb = np.asarray(self.embeddings.embed_documents(sentences))
+        p_emb = np.asarray(self.embeddings.embed_documents(premises))
+        sims = s_emb @ p_emb.T  # embeddings normalisés : produit scalaire = cosinus
+        return [np.argsort(-row)[: self.top_premises] for row in sims]
 
     def __call__(self, answer: str, docs: list[Document], ticket: str = "") -> str | None:
         if self.check_numbers:

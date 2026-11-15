@@ -26,3 +26,19 @@ def test_nli_verifier_detects_contradiction():
     assert "numbers" in v("You can return the item within 60 days.", DOCS)
     reason = NLIVerifier(check_numbers=False)("Items cannot be returned for a refund.", DOCS)
     assert reason and "contradicted" in reason
+
+
+def test_list_markers_are_not_numbers():
+    answer = "Follow these steps:\n1. Open Account.\n2) Return within 30 days."
+    assert unsupported_numbers(answer, DOCS) == set()
+
+
+def test_relevant_premises_keeps_closest():
+    class FakeEmb:  # 1er axe = « retour », 2e axe = autre sujet
+        def embed_documents(self, texts):
+            return [[1.0, 0.0] if "return" in t.lower() else [0.0, 1.0] for t in texts]
+
+    v = NLIVerifier(embeddings=FakeEmb(), top_premises=1)
+    idx = v._relevant_premises(["You can return it."], ["Parcels are shipped.", "Returns within 30 days."])
+    assert list(idx[0]) == [1]
+    assert NLIVerifier()._relevant_premises(["a"], ["b"]) == [slice(None)]

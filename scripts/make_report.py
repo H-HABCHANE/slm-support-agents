@@ -35,8 +35,9 @@ def retrieval() -> list[str]:
         return []
     ret = json.loads(path.read_text())
     lines = [f"## Recherche RAG ({ret['n_tickets']} tickets réalistes, {ret['embedding_model'].split('/')[-1]})\n",
-             "| Requête | hit@1 | hit@3 |", "|---|---|---|"]
-    lines += [f"| {k} | {pct(v['hit@1'])} | {pct(v['hit@3'])} |" for k, v in ret.items() if isinstance(v, dict)]
+             "| Requête | Recherche | hit@1 | hit@3 | MRR@3 | Latence médiane |", "|---|---|---|---|---|---|"]
+    lines += [f"| {k} | {pct(v['hit@1'])} | {pct(v['hit@3'])} | {v['mrr@3']:.3f} | {v['median_latency_ms']} ms |"
+              for k, v in ret.items() if isinstance(v, dict)]
     return lines + [""]
 
 
@@ -52,6 +53,21 @@ def calibration() -> list[str]:
     for r in sorted(rows, key=lambda r: -r["balanced_accuracy"]):
         lines.append(f"| {r['model'].split('/')[-1]} | {r['prompt']} | {pct(r['accepts_faithful'])} "
                      f"| {pct(r['rejects_corrupted'])} | **{pct(r['balanced_accuracy'])}** |")
+    return lines + [""]
+
+
+def verifier_real() -> list[str]:
+    path = R / "verifier_real.json"
+    if not path.exists():
+        return []
+    res = json.loads(path.read_text())
+    lines = [f"## Vérificateur sur de vraies réponses de l'agent ({res['n']} brouillons de Qwen2.5-1.5B "
+             f"annotés à la main : {res['n_faithful']} fidèles, {res['n'] - res['n_faithful']} faux)\n",
+             "| Vérificateur | Accepte les réponses fidèles | Rejette les réponses fausses | Exactitude équilibrée |",
+             "|---|---|---|---|"]
+    for name, v in res["verifiers"].items():
+        lines.append(f"| {name} | {pct(v['accepts_faithful'])} | {pct(v['rejects_wrong'])} "
+                     f"| **{pct(v['balanced_accuracy'])}** |")
     return lines + [""]
 
 
@@ -81,7 +97,7 @@ def agents() -> list[str]:
 
 
 def main() -> None:
-    lines = ["# Résultats\n", *classification(), *retrieval(), *calibration(), *agents()]
+    lines = ["# Résultats\n", *classification(), *retrieval(), *calibration(), *verifier_real(), *agents()]
     out = R / "RESULTS.md"
     out.write_text("\n".join(lines), encoding="utf-8")
     print("\n".join(lines))

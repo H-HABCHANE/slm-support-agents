@@ -1,0 +1,1442 @@
+{
+  "summary": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "params_m": 1544,
+    "load_seconds": 24.4,
+    "ram_model_mb": 4218,
+    "n_tickets": 27,
+    "n_with_llm": 23,
+    "intent_accuracy": 0.704,
+    "answered_rate": 0.261,
+    "first_try_accepted_rate": 0.174,
+    "median_seconds_per_ticket": 73.6,
+    "p90_seconds_per_ticket": 115.7,
+    "median_tokens_per_second": 1.7,
+    "mean_similarity_to_reference": 0.526,
+    "classifier": "lora_aug",
+    "verifier": "nli",
+    "device": "cpu",
+    "external_api_calls": 0,
+    "judge_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "judge_supported_rate": 0.167
+  },
+  "tickets": [
+    {
+      "id": "R01",
+      "gold_intent": "cancel_order",
+      "pred_intent": "delivery_period",
+      "confidence": 0.932,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=1.00): Hello,",
+      "seconds": 187.98,
+      "generate_seconds": 157.32,
+      "answer_tokens": 94,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 14.373
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.177
+        },
+        {
+          "node": "generate",
+          "seconds": 104.463
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "generate",
+          "seconds": 52.857
+        },
+        {
+          "node": "verify",
+          "seconds": 15.913
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "Hi, I placed an order yesterday evening for a coffee machine but my husband already bought one. Can I still stop it before it ships? Order NS-551203.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "Hello,\n\nThank you for reaching out. According to our system, your order NS-551203 for a coffee machine has been received. You can cancel the order by going to Account > Orders > Cancel while the status is \"Received.\" Once the order is canceled, there won't be any charges associated with it.\n\nIf you need further assistance, please let me know, and we'll guide you through the process.\n\nBest regards,\nNovaShop Customer Support",
+      "sources": [
+        "cancel.md",
+        "order.md",
+        "terms_of_sale.pdf"
+      ],
+      "context": "[1] (cancel.md) Cancel an order\nAn order can be cancelled free of charge in Account > Orders > Cancel while its status is \"Received\" or \"Preparing\". Once the order is \"Shipped\", it cannot be cancelled: the customer must wait for delivery and request a return.\n\n[2] (order.md) Change an order\nItems, quantities and options can be changed in Account > Orders while the order status is \"Received\". Once the status is \"Preparing\" or later, the order can no longer be changed; cancel it (if possible) and place a new one.\n\n[3] (terms_of_sale.pdf) NovaShop – General Terms of Sale (extract)\nArticle 4 – Right of withdrawal\nUnder EU consumer law, customers have a right of withdrawal of 14 days from delivery, without\nhaving to give a reason. NovaShop extends this period to 30 days for most items (see the refund\npolicy). The right of withdrawal does not apply to custom-made products.\nArticle 6 – Legal warranty\nAll products benefit from the 2-year legal warranty of conformity from the delivery date. A defective\nproduct is repaired or replaced free of charge; if neither is possible, the customer is refunded.\nArticle 7 – Lost or damaged parcels\nA parcel that arrives damaged must be refused or reported within 48 hours of delivery with photos."
+    },
+    {
+      "id": "R03",
+      "gold_intent": "change_order",
+      "pred_intent": "change_order",
+      "confidence": 0.975,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.99): Yes, you can still change the color of your order once it has been received.",
+      "seconds": 91.98,
+      "generate_seconds": 85.88,
+      "answer_tokens": 76,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.316
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.032
+        },
+        {
+          "node": "generate",
+          "seconds": 41.116
+        },
+        {
+          "node": "verify",
+          "seconds": 2.855
+        },
+        {
+          "node": "generate",
+          "seconds": 44.768
+        },
+        {
+          "node": "verify",
+          "seconds": 2.888
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I ordered the blue backpack but I actually wanted the black one, same size. The order is NS-303112, is it too late to swap the colour?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "Yes, you can still change the color of your order once it has been received. You should go to Account > Orders and select the order NS-303112. From there, choose to edit the order details and update the color preference to black. Once done, proceed with changing the order status back to \"Received\" so we can process the color change.",
+      "sources": [
+        "order.md",
+        "refund.md",
+        "shipping.md"
+      ],
+      "context": "[1] (order.md) Change an order\nItems, quantities and options can be changed in Account > Orders while the order status is \"Received\". Once the status is \"Preparing\" or later, the order can no longer be changed; cancel it (if possible) and place a new one.\n\n[2] (refund.md) Get a refund\nStart a return in Account > Orders > Return an item and print the prepaid label. The refund is issued to the original payment method within 5 business days after the warehouse receives the item. Refunds for defective items also cover the original shipping cost.\n\n[3] (shipping.md) Change the shipping address\nThe shipping address of an order can be changed in Account > Orders while the status is \"Received\". After the order is \"Preparing\" or \"Shipped\", the address cannot be changed by NovaShop; for a shipped parcel the customer can use the carrier's redirection link in the tracking email."
+    },
+    {
+      "id": "R05",
+      "gold_intent": "change_shipping_address",
+      "pred_intent": "set_up_shipping_address",
+      "confidence": 0.866,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.77): To change your shipping address to 12 rue Victor Hugo, Lyon, first log into your",
+      "seconds": 97.81,
+      "generate_seconds": 89.13,
+      "answer_tokens": 58,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.184
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.02
+        },
+        {
+          "node": "generate",
+          "seconds": 52.846
+        },
+        {
+          "node": "verify",
+          "seconds": 4.523
+        },
+        {
+          "node": "generate",
+          "seconds": 36.288
+        },
+        {
+          "node": "verify",
+          "seconds": 3.945
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I just realised my order is going to my old flat. I moved last week! Can you send it to 12 rue Victor Hugo, Lyon instead?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "To change your shipping address to 12 rue Victor Hugo, Lyon, first log into your NovaShop account under Account > Addresses. Add this new shipping address with the specified street name, city, and country. Once added, select it as your default shipping option when placing future orders.",
+      "sources": [
+        "shipping.md",
+        "delivery.md",
+        "shipping.md"
+      ],
+      "context": "[1] (shipping.md) Change the shipping address\nThe shipping address of an order can be changed in Account > Orders while the status is \"Received\". After the order is \"Preparing\" or \"Shipped\", the address cannot be changed by NovaShop; for a shipped parcel the customer can use the carrier's redirection link in the tracking email.\n\n[2] (delivery.md) Delivery options\nThree options are available in France: Standard (4.90 EUR, free above 50 EUR), Express (9.90 EUR) and Pickup point (2.90 EUR). International delivery is available to EU countries only.\n\n[3] (shipping.md) Set up a shipping address\nShipping addresses are managed in Account > Addresses. Up to 5 addresses can be saved, and one can be set as default. Pickup points are selected at checkout."
+    },
+    {
+      "id": "R07",
+      "gold_intent": "check_cancellation_fee",
+      "pred_intent": "track_order",
+      "confidence": 0.484,
+      "status": "escalated",
+      "generations": 0,
+      "verdict": null,
+      "escalation_reason": "low classification confidence (0.48)",
+      "seconds": 0.34,
+      "generate_seconds": 0,
+      "answer_tokens": 0,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.337
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "If I cancel the engraved watch I ordered, will I have to pay something? Production may have started already.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "",
+      "sources": [],
+      "context": ""
+    },
+    {
+      "id": "R09",
+      "gold_intent": "check_invoice",
+      "pred_intent": "check_invoice",
+      "confidence": 0.862,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.99): Thank you for your inquiry about the discrepancy between the invoice amount and ",
+      "seconds": 97.66,
+      "generate_seconds": 90.07,
+      "answer_tokens": 82,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.492
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.039
+        },
+        {
+          "node": "generate",
+          "seconds": 41.022
+        },
+        {
+          "node": "verify",
+          "seconds": 3.601
+        },
+        {
+          "node": "generate",
+          "seconds": 49.049
+        },
+        {
+          "node": "verify",
+          "seconds": 3.446
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "The invoice for order NS-640021 says 89.90 but I paid 79.90 with a promo code. Can you check why the amount is different?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "Thank you for your inquiry about the discrepancy between the invoice amount and the payment received. According to the invoice details provided, the correct amount should be 89.90. The difference could be due to a promotional discount applied during checkout. To resolve this issue, please contact our customer service team who can assist you further. They will review the transaction and ensure the correct amount is reflected on your account.",
+      "sources": [
+        "invoice.md",
+        "cancel.md",
+        "payment.md"
+      ],
+      "context": "[1] (invoice.md) Check an invoice\nEach invoice shows the order number, items, VAT and payment method. If an amount looks wrong, compare it with the order confirmation email; partial shipments produce one invoice per package. Invoice errors must be reported within 60 days.\n\n[2] (cancel.md) Cancellation fees\nThere is no fee for cancelling an order before shipping. Custom-made products (engraving, made-to-measure) carry a cancellation fee of 15 % of the item price once production has started. Annual NovaShop Plus subscriptions cancelled after the 14-day withdrawal period are not refunded for the current year.\n\n[3] (payment.md) Payment methods\nNovaShop accepts Visa, Mastercard, American Express, PayPal, Apple Pay and bank transfer. Payment in 3 instalments without fees is available for orders above 150 EUR. Cash on delivery is not available."
+    },
+    {
+      "id": "R11",
+      "gold_intent": "check_payment_methods",
+      "pred_intent": "check_payment_methods",
+      "confidence": 0.95,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.85): Please go to our website and select \"PayPal\" as one of the payment options durin",
+      "seconds": 72.99,
+      "generate_seconds": 66.31,
+      "answer_tokens": 69,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.137
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.014
+        },
+        {
+          "node": "generate",
+          "seconds": 23.977
+        },
+        {
+          "node": "verify",
+          "seconds": 2.715
+        },
+        {
+          "node": "generate",
+          "seconds": 42.333
+        },
+        {
+          "node": "verify",
+          "seconds": 3.811
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "Do you take PayPal? My bank card is blocked and I really want to order today.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "Yes, we accept PayPal payments. You can place your order using PayPal if your bank card is blocked. Please go to our website and select \"PayPal\" as one of the payment options during checkout. Once you've selected PayPal, enter your PayPal credentials to complete the transaction. If you need further assistance, please contact our customer service team.",
+      "sources": [
+        "payment.md",
+        "payment.md",
+        "order.md"
+      ],
+      "context": "[1] (payment.md) Payment issues\nIf a payment is declined, check the card details and 3-D Secure validation with the bank, then try again or use another method. A pending charge for a failed payment is released automatically by the bank within 7 days. If the customer was charged twice for the same order, the duplicate is refunded automatically within 3 business days; customer service can confirm it with the order number.\n\n[2] (payment.md) Payment methods\nNovaShop accepts Visa, Mastercard, American Express, PayPal, Apple Pay and bank transfer. Payment in 3 instalments without fees is available for orders above 150 EUR. Cash on delivery is not available.\n\n[3] (order.md) Place an order\nAdd items to the cart and check out. Orders can be placed as a guest or with an account. An order confirmation email with the order number (format NS-XXXXXX) is sent immediately."
+    },
+    {
+      "id": "R13",
+      "gold_intent": "check_refund_policy",
+      "pred_intent": "get_refund",
+      "confidence": 0.973,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.77): Yes, you can return the jacket within 30 days of delivery if it meets the criter",
+      "seconds": 86.68,
+      "generate_seconds": 80.59,
+      "answer_tokens": 74,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.161
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.018
+        },
+        {
+          "node": "generate",
+          "seconds": 34.964
+        },
+        {
+          "node": "verify",
+          "seconds": 2.562
+        },
+        {
+          "node": "generate",
+          "seconds": 45.623
+        },
+        {
+          "node": "verify",
+          "seconds": 3.344
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I bought a jacket 3 weeks ago, I wore it once and it's too small. Can I still send it back and get my money?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "Yes, you can return the jacket within 30 days of delivery if it meets the criteria of being unused and in its original packaging. Please start a return process through your account under \"Orders\" -> \"Return an item\", and print the prepaid label. The refund will be issued to the original payment method within 5 business days after the warehouse receives the item.",
+      "sources": [
+        "refund.md",
+        "refund.md",
+        "refund.md"
+      ],
+      "context": "[1] (refund.md) Refund policy\nCustomers can return most items within 30 days of delivery for a full refund. Items must be unused and in their original packaging. Exceptions: custom-made products, opened software and hygiene products cannot be returned. Return shipping is free for NovaShop Plus members and costs 4.90 EUR otherwise.\n\n[2] (refund.md) Get a refund\nStart a return in Account > Orders > Return an item and print the prepaid label. The refund is issued to the original payment method within 5 business days after the warehouse receives the item. Refunds for defective items also cover the original shipping cost.\n\n[3] (refund.md) Track a refund\nRefund status is shown in Account > Orders > Returns. Once issued, a card refund can take 3 to 10 business days to appear on the bank statement, depending on the bank. If a refund has not appeared after 10 business days, contact customer service with the order number."
+    },
+    {
+      "id": "R15",
+      "gold_intent": "complaint",
+      "pred_intent": "contact_customer_service",
+      "confidence": 0.847,
+      "status": "answered",
+      "generations": 2,
+      "verdict": "SUPPORTED",
+      "escalation_reason": null,
+      "seconds": 84.06,
+      "generate_seconds": 77.47,
+      "answer_tokens": 77,
+      "similarity_to_reference": 0.3862,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.163
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.016
+        },
+        {
+          "node": "generate",
+          "seconds": 30.737
+        },
+        {
+          "node": "verify",
+          "seconds": 2.607
+        },
+        {
+          "node": "generate",
+          "seconds": 46.735
+        },
+        {
+          "node": "verify",
+          "seconds": 3.798
+        },
+        {
+          "node": "finalize",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "This is the third time my delivery is late and nobody answers my emails. I am really disappointed with your service and I want this escalated.",
+      "answer": "I understand your frustration regarding the delayed deliveries. According to our records, standard shipping usually takes 3-5 business days. For express shipping, it typically takes 1-2 business days. The pickup option generally has a timeframe of 3-4 business days. It seems there might have been an error in tracking your order. Please provide more details so we can investigate further.",
+      "draft_answer": "",
+      "sources": [
+        "contact.md",
+        "delivery.md",
+        "invoice.md"
+      ],
+      "context": "[1] (contact.md) Contact customer service\nCustomer service is available by chat and at +33 1 23 45 67 89, Monday to Friday from 9 am to 6 pm (Paris time). Email requests through the contact form are answered within 24 business hours.\n\n[2] (delivery.md) Delivery period\nStandard delivery takes 3 to 5 business days, Express 1 to 2 business days, and Pickup point 3 to 4 business days. Orders placed before 2 pm on a business day leave the warehouse the same day. A parcel not delivered 5 business days after the expected date is investigated by customer service.\n\n[3] (invoice.md) Check an invoice\nEach invoice shows the order number, items, VAT and payment method. If an amount looks wrong, compare it with the order confirmation email; partial shipments produce one invoice per package. Invoice errors must be reported within 60 days.",
+      "judge_supported": false
+    },
+    {
+      "id": "R17",
+      "gold_intent": "contact_customer_service",
+      "pred_intent": "contact_customer_service",
+      "confidence": 0.471,
+      "status": "escalated",
+      "generations": 0,
+      "verdict": null,
+      "escalation_reason": "low classification confidence (0.47)",
+      "seconds": 0.14,
+      "generate_seconds": 0,
+      "answer_tokens": 0,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.135
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "What are your opening hours? I tried calling at 7pm and nobody picked up.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "",
+      "sources": [],
+      "context": ""
+    },
+    {
+      "id": "R19",
+      "gold_intent": "contact_human_agent",
+      "pred_intent": "contact_human_agent",
+      "confidence": 0.997,
+      "status": "escalated",
+      "generations": 0,
+      "verdict": null,
+      "escalation_reason": "intent 'contact_human_agent' is always handled by a human",
+      "seconds": 0.14,
+      "generate_seconds": 0,
+      "answer_tokens": 0,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.136
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I don't want to talk to a bot. Please put me through to a real person.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "",
+      "sources": [],
+      "context": ""
+    },
+    {
+      "id": "R21",
+      "gold_intent": "create_account",
+      "pred_intent": "create_account",
+      "confidence": 1.0,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "numbers not found in the documentation: 1, 2, 3, 4",
+      "seconds": 115.67,
+      "generate_seconds": 112.32,
+      "answer_tokens": 105,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.144
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.015
+        },
+        {
+          "node": "generate",
+          "seconds": 51.712
+        },
+        {
+          "node": "verify",
+          "seconds": 3.188
+        },
+        {
+          "node": "generate",
+          "seconds": 60.607
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I'd like to open an account so I can follow my orders more easily, how do I do that?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "To create an account at NovaShop, please visit our signup page at [signup URL]. Follow these steps:\n\n1. Enter your preferred email address.\n2. Choose a strong password consisting of at least 10 characters.\n3. Click on the \"Create Account\" button after setting up your details.\n4. Confirm your email address by clicking on the activation link sent to you.\n\nOnce your account is created, you'll receive an order confirmation email with your order number. You can now manage your orders through this account.",
+      "sources": [
+        "account.md",
+        "account.md",
+        "order.md"
+      ],
+      "context": "[1] (account.md) Switch account\nTo switch between a personal and a business account, log out and log in with the other account. Orders cannot be moved from one account to another.\n\n[2] (account.md) Create an account\nCustomers create an account at novashop.example/signup with an email address and a password of at least 10 characters. A confirmation email is sent within 5 minutes; the link is valid for 24 hours. One email address can only be linked to one account.\n\n[3] (order.md) Place an order\nAdd items to the cart and check out. Orders can be placed as a guest or with an account. An order confirmation email with the order number (format NS-XXXXXX) is sent immediately."
+    },
+    {
+      "id": "R23",
+      "gold_intent": "delete_account",
+      "pred_intent": "delete_account",
+      "confidence": 0.999,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "numbers not found in the documentation: 1, 2, 3, 4, 5",
+      "seconds": 151.93,
+      "generate_seconds": 151.77,
+      "answer_tokens": 176,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.146
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.012
+        },
+        {
+          "node": "generate",
+          "seconds": 54.925
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "generate",
+          "seconds": 96.842
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "Please remove my account and all my data, I won't be shopping with you anymore.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "I'm sorry to hear about your decision to close your account. To proceed with deleting your account permanently, please follow these steps:\n\n1. Log out of your NovaShop account.\n2. Go to Account > Privacy > Delete my account.\n3. Confirm by clicking \"Delete\" on the confirmation page.\n4. Your account will become inactive immediately, but it will take 14 days before it is fully deleted.\n5. During this period, any orders in progress or open refunds cannot be canceled.\n\nOnce the 14-day period has passed, your account will be completely removed from our system. Please note that once your account is deleted, you will no longer have access to your previously purchased items or any associated information.\n\nIf you need further assistance or have questions regarding the process, feel free to contact us through the provided contact details. Thank you for choosing NovaShop!",
+      "sources": [
+        "account.md",
+        "account.md",
+        "terms_of_sale.pdf"
+      ],
+      "context": "[1] (account.md) Delete an account\nAccount deletion is requested in Account > Privacy > Delete my account. It is permanent and takes effect after 14 days, during which it can be cancelled. Accounts with an order in progress or an open refund cannot be deleted until it is closed. Invoices are kept for 10 years for legal reasons.\n\n[2] (account.md) Switch account\nTo switch between a personal and a business account, log out and log in with the other account. Orders cannot be moved from one account to another.\n\n[3] (terms_of_sale.pdf) A parcel that arrives damaged must be refused or reported within 48 hours of delivery with photos.\nNovaShop then ships a replacement or issues a full refund, including shipping costs.\nArticle 9 – Personal data\nPersonal data is processed in accordance with the GDPR and stored in the European Union.\nCustomers can request access, correction or deletion of their data at privacy@novashop.example.\nInvoices are kept for 10 years to meet accounting obligations."
+    },
+    {
+      "id": "R25",
+      "gold_intent": "delivery_options",
+      "pred_intent": "delivery_options",
+      "confidence": 0.523,
+      "status": "answered",
+      "generations": 1,
+      "verdict": "SUPPORTED",
+      "escalation_reason": null,
+      "seconds": 25.07,
+      "generate_seconds": 21.25,
+      "answer_tokens": 36,
+      "similarity_to_reference": 0.369,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.147
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.016
+        },
+        {
+          "node": "generate",
+          "seconds": 21.245
+        },
+        {
+          "node": "verify",
+          "seconds": 2.872
+        },
+        {
+          "node": "finalize",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "Do you deliver to pickup points? I'm never home during the day.",
+      "answer": "Yes, we offer Pickup Point delivery option for your convenience. It typically takes 3-4 business days from the order being placed. Would you like to proceed with this option?",
+      "draft_answer": "",
+      "sources": [
+        "shipping.md",
+        "delivery.md",
+        "delivery.md"
+      ],
+      "context": "[1] (shipping.md) Set up a shipping address\nShipping addresses are managed in Account > Addresses. Up to 5 addresses can be saved, and one can be set as default. Pickup points are selected at checkout.\n\n[2] (delivery.md) Delivery period\nStandard delivery takes 3 to 5 business days, Express 1 to 2 business days, and Pickup point 3 to 4 business days. Orders placed before 2 pm on a business day leave the warehouse the same day. A parcel not delivered 5 business days after the expected date is investigated by customer service.\n\n[3] (delivery.md) Delivery options\nThree options are available in France: Standard (4.90 EUR, free above 50 EUR), Express (9.90 EUR) and Pickup point (2.90 EUR). International delivery is available to EU countries only.",
+      "judge_supported": false
+    },
+    {
+      "id": "R27",
+      "gold_intent": "delivery_period",
+      "pred_intent": "delivery_options",
+      "confidence": 0.882,
+      "status": "answered",
+      "generations": 1,
+      "verdict": "SUPPORTED",
+      "escalation_reason": null,
+      "seconds": 38.36,
+      "generate_seconds": 30.76,
+      "answer_tokens": 46,
+      "similarity_to_reference": 0.5431,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 1.167
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.018
+        },
+        {
+          "node": "generate",
+          "seconds": 30.757
+        },
+        {
+          "node": "verify",
+          "seconds": 6.386
+        },
+        {
+          "node": "finalize",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "If I order now, will I receive the package before Saturday with standard shipping?",
+      "answer": "Yes, you should generally receive your package before Saturday with standard shipping. However, please note that express shipping may arrive faster but at an additional cost. For more accurate information, check the estimated delivery time provided when placing your order.",
+      "draft_answer": "",
+      "sources": [
+        "delivery.md",
+        "terms_of_sale.pdf",
+        "feedback.md"
+      ],
+      "context": "[1] (delivery.md) Delivery period\nStandard delivery takes 3 to 5 business days, Express 1 to 2 business days, and Pickup point 3 to 4 business days. Orders placed before 2 pm on a business day leave the warehouse the same day. A parcel not delivered 5 business days after the expected date is investigated by customer service.\n\n[2] (terms_of_sale.pdf) NovaShop – General Terms of Sale (extract)\nArticle 4 – Right of withdrawal\nUnder EU consumer law, customers have a right of withdrawal of 14 days from delivery, without\nhaving to give a reason. NovaShop extends this period to 30 days for most items (see the refund\npolicy). The right of withdrawal does not apply to custom-made products.\nArticle 6 – Legal warranty\nAll products benefit from the 2-year legal warranty of conformity from the delivery date. A defective\nproduct is repaired or replaced free of charge; if neither is possible, the customer is refunded.\nArticle 7 – Lost or damaged parcels\nA parcel that arrives damaged must be refused or reported within 48 hours of delivery with photos.\n\n[3] (feedback.md) Reviews\nCustomers can leave a product review from Account > Orders after delivery, or a review of the service from the link in the delivery email. Reviews are published after moderation within 48 hours.",
+      "judge_supported": false
+    },
+    {
+      "id": "R29",
+      "gold_intent": "edit_account",
+      "pred_intent": "edit_account",
+      "confidence": 0.973,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.90): If you've recently gotten married and updated your last name, you should go to A",
+      "seconds": 63.75,
+      "generate_seconds": 55.71,
+      "answer_tokens": 49,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 3.538
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.017
+        },
+        {
+          "node": "generate",
+          "seconds": 25.004
+        },
+        {
+          "node": "verify",
+          "seconds": 2.534
+        },
+        {
+          "node": "generate",
+          "seconds": 30.708
+        },
+        {
+          "node": "verify",
+          "seconds": 1.939
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I got married and changed my last name, how do I update it on my profile?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "If you've recently gotten married and updated your last name, you should go to Account > Profile and change your Name field there. This action doesn't require contacting customer service directly; simply updating your information through the platform should reflect the changes accurately.",
+      "sources": [
+        "account.md",
+        "account.md",
+        "account.md"
+      ],
+      "context": "[1] (account.md) Edit account details\nName, phone number and email can be changed in Account > Profile. Changing the email requires confirming the new address. Date of birth can only be changed by customer service.\n\n[2] (account.md) Switch account\nTo switch between a personal and a business account, log out and log in with the other account. Orders cannot be moved from one account to another.\n\n[3] (account.md) Delete an account\nAccount deletion is requested in Account > Privacy > Delete my account. It is permanent and takes effect after 14 days, during which it can be cancelled. Accounts with an order in progress or an open refund cannot be deleted until it is closed. Invoices are kept for 10 years for legal reasons."
+    },
+    {
+      "id": "R31",
+      "gold_intent": "get_invoice",
+      "pred_intent": "get_invoice",
+      "confidence": 0.988,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.68): To obtain your invoice for the laptop you purchased last month, please visit Acc",
+      "seconds": 50.11,
+      "generate_seconds": 46.27,
+      "answer_tokens": 21,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.362
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.012
+        },
+        {
+          "node": "generate",
+          "seconds": 31.159
+        },
+        {
+          "node": "verify",
+          "seconds": 2.427
+        },
+        {
+          "node": "generate",
+          "seconds": 15.11
+        },
+        {
+          "node": "verify",
+          "seconds": 1.04
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "My company needs an invoice for the laptop I bought last month, where can I download it?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "To obtain your invoice for the laptop you purchased last month, please visit Account > Orders > Download invoice.",
+      "sources": [
+        "invoice.md",
+        "invoice.md",
+        "refund.md"
+      ],
+      "context": "[1] (invoice.md) Get an invoice\nInvoices are available as PDF in Account > Orders > Download invoice once the order has shipped. Guest customers receive the invoice by email after shipping. Business customers can add a company name and VAT number before checkout; invoices cannot be re-issued with a different company name after payment.\n\n[2] (invoice.md) Check an invoice\nEach invoice shows the order number, items, VAT and payment method. If an amount looks wrong, compare it with the order confirmation email; partial shipments produce one invoice per package. Invoice errors must be reported within 60 days.\n\n[3] (refund.md) Get a refund\nStart a return in Account > Orders > Return an item and print the prepaid label. The refund is issued to the original payment method within 5 business days after the warehouse receives the item. Refunds for defective items also cover the original shipping cost."
+    },
+    {
+      "id": "R33",
+      "gold_intent": "get_refund",
+      "pred_intent": "get_refund",
+      "confidence": 0.937,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.62): Please note that custom-made products such as toasters are excluded from standar",
+      "seconds": 109.65,
+      "generate_seconds": 101.33,
+      "answer_tokens": 71,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.307
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.012
+        },
+        {
+          "node": "generate",
+          "seconds": 61.395
+        },
+        {
+          "node": "verify",
+          "seconds": 4.938
+        },
+        {
+          "node": "generate",
+          "seconds": 39.931
+        },
+        {
+          "node": "verify",
+          "seconds": 3.065
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "The toaster I received doesn't heat at all. I want my money back, not a replacement.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "If you purchased a toaster that doesn't heat properly, we recommend contacting our customer service team directly as they can provide guidance based on your specific situation. They may offer assistance with returning the product if it meets the criteria outlined in our refund policy. Please note that custom-made products such as toasters are excluded from standard return policies due to their unique nature.",
+      "sources": [
+        "refund.md",
+        "refund.md",
+        "refund.md"
+      ],
+      "context": "[1] (refund.md) Refund policy\nCustomers can return most items within 30 days of delivery for a full refund. Items must be unused and in their original packaging. Exceptions: custom-made products, opened software and hygiene products cannot be returned. Return shipping is free for NovaShop Plus members and costs 4.90 EUR otherwise.\n\n[2] (refund.md) Get a refund\nStart a return in Account > Orders > Return an item and print the prepaid label. The refund is issued to the original payment method within 5 business days after the warehouse receives the item. Refunds for defective items also cover the original shipping cost.\n\n[3] (refund.md) Track a refund\nRefund status is shown in Account > Orders > Returns. Once issued, a card refund can take 3 to 10 business days to appear on the bank statement, depending on the bank. If a refund has not appeared after 10 business days, contact customer service with the order number."
+    },
+    {
+      "id": "R35",
+      "gold_intent": "newsletter_subscription",
+      "pred_intent": "newsletter_subscription",
+      "confidence": 0.996,
+      "status": "answered",
+      "generations": 1,
+      "verdict": "SUPPORTED",
+      "escalation_reason": null,
+      "seconds": 26.11,
+      "generate_seconds": 24.06,
+      "answer_tokens": 41,
+      "similarity_to_reference": 0.6781,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.137
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.015
+        },
+        {
+          "node": "generate",
+          "seconds": 24.059
+        },
+        {
+          "node": "verify",
+          "seconds": 1.895
+        },
+        {
+          "node": "finalize",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "Stop sending me promotional emails every day, how do I unsubscribe?",
+      "answer": "To unsubscribe from the newsletter, please go to Account > Preferences or click on the \"unsubscribe\" link at the bottom of each newsletter email you receive. This action will take effect within 48 hours.",
+      "draft_answer": "",
+      "sources": [
+        "subscription.md",
+        "cancel.md",
+        "cancel.md"
+      ],
+      "context": "[1] (subscription.md) Newsletter subscription\nCustomers can subscribe or unsubscribe from the newsletter in Account > Preferences or with the \"unsubscribe\" link at the bottom of every newsletter. Unsubscribing takes effect within 48 hours. NovaShop Plus is a separate paid membership (49 EUR per year) giving free returns and free Express delivery.\n\n[2] (cancel.md) Cancel an order\nAn order can be cancelled free of charge in Account > Orders > Cancel while its status is \"Received\" or \"Preparing\". Once the order is \"Shipped\", it cannot be cancelled: the customer must wait for delivery and request a return.\n\n[3] (cancel.md) Cancellation fees\nThere is no fee for cancelling an order before shipping. Custom-made products (engraving, made-to-measure) carry a cancellation fee of 15 % of the item price once production has started. Annual NovaShop Plus subscriptions cancelled after the 14-day withdrawal period are not refunded for the current year.",
+      "judge_supported": true
+    },
+    {
+      "id": "R37",
+      "gold_intent": "payment_issue",
+      "pred_intent": "payment_issue",
+      "confidence": 0.724,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "answer contains a template placeholder",
+      "seconds": 103.84,
+      "generate_seconds": 103.66,
+      "answer_tokens": 79,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.161
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.015
+        },
+        {
+          "node": "generate",
+          "seconds": 59.981
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "generate",
+          "seconds": 43.677
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I was charged twice for order NS-412876! Two identical payments of 54.90 on my bank statement.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "The duplicate charges were likely due to a system error. To resolve this issue:\n\n1. Confirm the order number provided.\n2. Contact our customer service team at [insert contact information].\n3. Provide your order number (NS-412876).\n4. Our team will investigate the situation and assist you further.\n\nPlease note that refunds for defective items include the original shipping costs.",
+      "sources": [
+        "payment.md",
+        "invoice.md",
+        "refund.md"
+      ],
+      "context": "[1] (payment.md) Payment issues\nIf a payment is declined, check the card details and 3-D Secure validation with the bank, then try again or use another method. A pending charge for a failed payment is released automatically by the bank within 7 days. If the customer was charged twice for the same order, the duplicate is refunded automatically within 3 business days; customer service can confirm it with the order number.\n\n[2] (invoice.md) Check an invoice\nEach invoice shows the order number, items, VAT and payment method. If an amount looks wrong, compare it with the order confirmation email; partial shipments produce one invoice per package. Invoice errors must be reported within 60 days.\n\n[3] (refund.md) Get a refund\nStart a return in Account > Orders > Return an item and print the prepaid label. The refund is issued to the original payment method within 5 business days after the warehouse receives the item. Refunds for defective items also cover the original shipping cost."
+    },
+    {
+      "id": "R39",
+      "gold_intent": "place_order",
+      "pred_intent": "create_account",
+      "confidence": 0.977,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=1.00): No, orders cannot be placed as a guest.",
+      "seconds": 49.68,
+      "generate_seconds": 44.81,
+      "answer_tokens": 27,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.218
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.011
+        },
+        {
+          "node": "generate",
+          "seconds": 27.999
+        },
+        {
+          "node": "verify",
+          "seconds": 2.47
+        },
+        {
+          "node": "generate",
+          "seconds": 16.814
+        },
+        {
+          "node": "verify",
+          "seconds": 2.159
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "Can I order without creating an account? I just want to buy one thing quickly.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "No, orders cannot be placed as a guest. You must create an account first. Once created, you can place your order securely.",
+      "sources": [
+        "account.md",
+        "order.md",
+        "account.md"
+      ],
+      "context": "[1] (account.md) Switch account\nTo switch between a personal and a business account, log out and log in with the other account. Orders cannot be moved from one account to another.\n\n[2] (order.md) Place an order\nAdd items to the cart and check out. Orders can be placed as a guest or with an account. An order confirmation email with the order number (format NS-XXXXXX) is sent immediately.\n\n[3] (account.md) Create an account\nCustomers create an account at novashop.example/signup with an email address and a password of at least 10 characters. A confirmation email is sent within 5 minutes; the link is valid for 24 hours. One email address can only be linked to one account."
+    },
+    {
+      "id": "R41",
+      "gold_intent": "recover_password",
+      "pred_intent": "recover_password",
+      "confidence": 0.958,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.99): Please try clicking \"Forgot password\" on the login page and entering your accoun",
+      "seconds": 69.43,
+      "generate_seconds": 65.94,
+      "answer_tokens": 43,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.13
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.012
+        },
+        {
+          "node": "generate",
+          "seconds": 35.409
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "generate",
+          "seconds": 30.527
+        },
+        {
+          "node": "verify",
+          "seconds": 3.301
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I forgot my password and the reset email never arrives.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "Please try clicking \"Forgot password\" on the login page and entering your account email again. A new reset link should be sent shortly. If you still don't receive it, please check your spam folder as well.",
+      "sources": [
+        "account.md",
+        "account.md",
+        "refund.md"
+      ],
+      "context": "[1] (account.md) Recover a password\nClick \"Forgot password\" on the login page and enter the account email. The reset link is valid for 1 hour. For security, NovaShop agents never ask for a password.\n\n[2] (account.md) Registration problems\nIf the confirmation email does not arrive, check the spam folder, then use \"Resend confirmation\" on the sign-up page. The message \"email already in use\" means an account already exists: use password recovery instead. Sign-up is blocked after 5 failed attempts for 30 minutes.\n\n[3] (refund.md) Get a refund\nStart a return in Account > Orders > Return an item and print the prepaid label. The refund is issued to the original payment method within 5 business days after the warehouse receives the item. Refunds for defective items also cover the original shipping cost."
+    },
+    {
+      "id": "R43",
+      "gold_intent": "registration_problems",
+      "pred_intent": "registration_problems",
+      "confidence": 0.922,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=0.94): The error message \"email already in use\" indicates that another account already ",
+      "seconds": 101.0,
+      "generate_seconds": 89.33,
+      "answer_tokens": 76,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 3.999
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.015
+        },
+        {
+          "node": "generate",
+          "seconds": 47.834
+        },
+        {
+          "node": "verify",
+          "seconds": 4.511
+        },
+        {
+          "node": "generate",
+          "seconds": 41.494
+        },
+        {
+          "node": "verify",
+          "seconds": 3.124
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "Every time I try to sign up it says my email is already in use but I never created an account!",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "The error message \"email already in use\" indicates that another account already exists with the same email address. To resolve this issue, you should use the password recovery feature provided on the sign-up page. This option allows you to reset your password if you have forgotten it. Please ensure you have followed all necessary steps to set up your initial account before attempting to recover your password again.",
+      "sources": [
+        "account.md",
+        "account.md",
+        "account.md"
+      ],
+      "context": "[1] (account.md) Registration problems\nIf the confirmation email does not arrive, check the spam folder, then use \"Resend confirmation\" on the sign-up page. The message \"email already in use\" means an account already exists: use password recovery instead. Sign-up is blocked after 5 failed attempts for 30 minutes.\n\n[2] (account.md) Create an account\nCustomers create an account at novashop.example/signup with an email address and a password of at least 10 characters. A confirmation email is sent within 5 minutes; the link is valid for 24 hours. One email address can only be linked to one account.\n\n[3] (account.md) Edit account details\nName, phone number and email can be changed in Account > Profile. Changing the email requires confirming the new address. Date of birth can only be changed by customer service."
+    },
+    {
+      "id": "R45",
+      "gold_intent": "review",
+      "pred_intent": "review",
+      "confidence": 0.999,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "sentence contradicted by the documentation (p=1.00): Thank you for your positive feedback about the vacuum cleaner.",
+      "seconds": 73.02,
+      "generate_seconds": 59.11,
+      "answer_tokens": 44,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.315
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.014
+        },
+        {
+          "node": "generate",
+          "seconds": 31.692
+        },
+        {
+          "node": "verify",
+          "seconds": 7.49
+        },
+        {
+          "node": "generate",
+          "seconds": 27.414
+        },
+        {
+          "node": "verify",
+          "seconds": 6.089
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I want to leave a review for the vacuum cleaner I received, it's amazing.",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "Thank you for your positive feedback about the vacuum cleaner. To leave a review, please visit Account > Orders after delivery or click on the link in the delivery email. Your review will be moderated within 48 hours.",
+      "sources": [
+        "feedback.md",
+        "terms_of_sale.pdf",
+        "refund.md"
+      ],
+      "context": "[1] (feedback.md) Reviews\nCustomers can leave a product review from Account > Orders after delivery, or a review of the service from the link in the delivery email. Reviews are published after moderation within 48 hours.\n\n[2] (terms_of_sale.pdf) NovaShop – General Terms of Sale (extract)\nArticle 4 – Right of withdrawal\nUnder EU consumer law, customers have a right of withdrawal of 14 days from delivery, without\nhaving to give a reason. NovaShop extends this period to 30 days for most items (see the refund\npolicy). The right of withdrawal does not apply to custom-made products.\nArticle 6 – Legal warranty\nAll products benefit from the 2-year legal warranty of conformity from the delivery date. A defective\nproduct is repaired or replaced free of charge; if neither is possible, the customer is refunded.\nArticle 7 – Lost or damaged parcels\nA parcel that arrives damaged must be refused or reported within 48 hours of delivery with photos.\n\n[3] (refund.md) Refund policy\nCustomers can return most items within 30 days of delivery for a full refund. Items must be unused and in their original packaging. Exceptions: custom-made products, opened software and hygiene products cannot be returned. Return shipping is free for NovaShop Plus members and costs 4.90 EUR otherwise."
+    },
+    {
+      "id": "R47",
+      "gold_intent": "set_up_shipping_address",
+      "pred_intent": "set_up_shipping_address",
+      "confidence": 1.0,
+      "status": "escalated",
+      "generations": 2,
+      "verdict": "NOT_SUPPORTED",
+      "escalation_reason": "numbers not found in the documentation: 1, 2, 3, 4",
+      "seconds": 73.57,
+      "generate_seconds": 70.79,
+      "answer_tokens": 79,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.213
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.015
+        },
+        {
+          "node": "generate",
+          "seconds": 27.925
+        },
+        {
+          "node": "verify",
+          "seconds": 2.543
+        },
+        {
+          "node": "generate",
+          "seconds": 42.867
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "How do I save a second delivery address for my parents' house in my account?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "To save a second delivery address for your parents' house in your account, follow these steps:\n\n1. Log into your NovaShop account.\n2. Navigate to Account > Addresses.\n3. Click on \"+Add Address\".\n4. Enter your parent's name, phone number, and address details.\n5. Save the new address.\n\nThis will allow you to manage multiple delivery options within your account.",
+      "sources": [
+        "shipping.md",
+        "shipping.md",
+        "account.md"
+      ],
+      "context": "[1] (shipping.md) Set up a shipping address\nShipping addresses are managed in Account > Addresses. Up to 5 addresses can be saved, and one can be set as default. Pickup points are selected at checkout.\n\n[2] (shipping.md) Change the shipping address\nThe shipping address of an order can be changed in Account > Orders while the status is \"Received\". After the order is \"Preparing\" or \"Shipped\", the address cannot be changed by NovaShop; for a shipped parcel the customer can use the carrier's redirection link in the tracking email.\n\n[3] (account.md) Switch account\nTo switch between a personal and a business account, log out and log in with the other account. Orders cannot be moved from one account to another."
+    },
+    {
+      "id": "R49",
+      "gold_intent": "switch_account",
+      "pred_intent": "switch_account",
+      "confidence": 0.496,
+      "status": "escalated",
+      "generations": 0,
+      "verdict": null,
+      "escalation_reason": "low classification confidence (0.50)",
+      "seconds": 0.16,
+      "generate_seconds": 0,
+      "answer_tokens": 0,
+      "similarity_to_reference": null,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.157
+        },
+        {
+          "node": "escalate",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I have a personal and a business account with you, how do I go from one to the other?",
+      "answer": "Thank you for your message. A NovaShop agent will take over your request and reply shortly (Monday to Friday, 9 am to 6 pm).",
+      "draft_answer": "",
+      "sources": [],
+      "context": ""
+    },
+    {
+      "id": "R51",
+      "gold_intent": "track_order",
+      "pred_intent": "track_order",
+      "confidence": 0.501,
+      "status": "answered",
+      "generations": 1,
+      "verdict": "SUPPORTED",
+      "escalation_reason": null,
+      "seconds": 39.76,
+      "generate_seconds": 36.66,
+      "answer_tokens": 67,
+      "similarity_to_reference": 0.6853,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.143
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.016
+        },
+        {
+          "node": "generate",
+          "seconds": 36.662
+        },
+        {
+          "node": "verify",
+          "seconds": 2.939
+        },
+        {
+          "node": "finalize",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "Where is my order NS-128840? It was supposed to arrive yesterday.",
+      "answer": "To track your order NS-128840, please visit Account > Orders or click on the tracking link provided in the shipping email. The current status should show whether it has been received, preparing, shipped, out for delivery, or delivered. If you need further assistance, our customer support team is available to help.",
+      "draft_answer": "",
+      "sources": [
+        "order.md",
+        "order.md",
+        "shipping.md"
+      ],
+      "context": "[1] (order.md) Track an order\nOrder status is visible in Account > Orders or with the tracking link in the shipping email. Statuses are: Received, Preparing, Shipped, Out for delivery, Delivered. Guest customers can track with the order number and email at novashop.example/track.\n\n[2] (order.md) Place an order\nAdd items to the cart and check out. Orders can be placed as a guest or with an account. An order confirmation email with the order number (format NS-XXXXXX) is sent immediately.\n\n[3] (shipping.md) Change the shipping address\nThe shipping address of an order can be changed in Account > Orders while the status is \"Received\". After the order is \"Preparing\" or \"Shipped\", the address cannot be changed by NovaShop; for a shipped parcel the customer can use the carrier's redirection link in the tracking email.",
+      "judge_supported": false
+    },
+    {
+      "id": "R53",
+      "gold_intent": "track_refund",
+      "pred_intent": "get_refund",
+      "confidence": 0.584,
+      "status": "answered",
+      "generations": 2,
+      "verdict": "SUPPORTED",
+      "escalation_reason": null,
+      "seconds": 59.81,
+      "generate_seconds": 58.66,
+      "answer_tokens": 20,
+      "similarity_to_reference": 0.4946,
+      "trace": [
+        {
+          "node": "ingest",
+          "seconds": 0.0
+        },
+        {
+          "node": "classify",
+          "seconds": 0.148
+        },
+        {
+          "node": "retrieve",
+          "seconds": 0.016
+        },
+        {
+          "node": "generate",
+          "seconds": 45.003
+        },
+        {
+          "node": "verify",
+          "seconds": 0.0
+        },
+        {
+          "node": "generate",
+          "seconds": 13.653
+        },
+        {
+          "node": "verify",
+          "seconds": 0.982
+        },
+        {
+          "node": "finalize",
+          "seconds": 0.0
+        }
+      ],
+      "ticket": "I returned an item two weeks ago and still haven't seen the refund on my card. Can you check?",
+      "answer": "Please contact our customer service team as they will be able to assist you further regarding your refund request.",
+      "draft_answer": "",
+      "sources": [
+        "refund.md",
+        "refund.md",
+        "refund.md"
+      ],
+      "context": "[1] (refund.md) Track a refund\nRefund status is shown in Account > Orders > Returns. Once issued, a card refund can take 3 to 10 business days to appear on the bank statement, depending on the bank. If a refund has not appeared after 10 business days, contact customer service with the order number.\n\n[2] (refund.md) Get a refund\nStart a return in Account > Orders > Return an item and print the prepaid label. The refund is issued to the original payment method within 5 business days after the warehouse receives the item. Refunds for defective items also cover the original shipping cost.\n\n[3] (refund.md) Refund policy\nCustomers can return most items within 30 days of delivery for a full refund. Items must be unused and in their original packaging. Exceptions: custom-made products, opened software and hygiene products cannot be returned. Return shipping is free for NovaShop Plus members and costs 4.90 EUR otherwise.",
+      "judge_supported": false
+    }
+  ]
+}

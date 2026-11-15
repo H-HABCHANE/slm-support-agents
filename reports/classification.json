@@ -1,0 +1,908 @@
+[
+  {
+    "classifier": "tfidf_logreg",
+    "params": "modèle linéaire",
+    "training": "train Bitext complet",
+    "bitext": {
+      "accuracy": 0.997,
+      "macro_f1": 0.9972,
+      "n": 1000,
+      "median_latency_ms": 1.7
+    },
+    "realistic": {
+      "accuracy": 0.6111,
+      "macro_f1": 0.5915,
+      "n": 54,
+      "median_latency_ms": 1.7
+    },
+    "realistic_errors": [
+      {
+        "text": "Hi, I placed an order yesterday evening for a coffee machine but my husband already bought",
+        "gold": "cancel_order",
+        "pred": "place_order"
+      },
+      {
+        "text": "I ordered the blue backpack but I actually wanted the black one, same size. The order is N",
+        "gold": "change_order",
+        "pred": "track_order"
+      },
+      {
+        "text": "I just realised my order is going to my old flat. I moved last week! Can you send it to 12",
+        "gold": "change_shipping_address",
+        "pred": "get_invoice"
+      },
+      {
+        "text": "If I cancel the engraved watch I ordered, will I have to pay something? Production may hav",
+        "gold": "check_cancellation_fee",
+        "pred": "place_order"
+      },
+      {
+        "text": "Is there any penalty for cancelling an order? I don't want surprises on my card.",
+        "gold": "check_cancellation_fee",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Do you take PayPal? My bank card is blocked and I really want to order today.",
+        "gold": "check_payment_methods",
+        "pred": "place_order"
+      },
+      {
+        "text": "Hello, can I pay in several times for a sofa that costs 600 euros?",
+        "gold": "check_payment_methods",
+        "pred": "place_order"
+      },
+      {
+        "text": "I bought a jacket 3 weeks ago, I wore it once and it's too small. Can I still send it back",
+        "gold": "check_refund_policy",
+        "pred": "get_refund"
+      },
+      {
+        "text": "This is the third time my delivery is late and nobody answers my emails. I am really disap",
+        "gold": "complaint",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "Your delivery guy left my parcel in the rain in front of the building and the box was dest",
+        "gold": "complaint",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "What are your opening hours? I tried calling at 7pm and nobody picked up.",
+        "gold": "contact_customer_service",
+        "pred": "create_account"
+      },
+      {
+        "text": "can a human look at my case please, the automatic answers don't help at all",
+        "gold": "contact_human_agent",
+        "pred": "check_invoice"
+      },
+      {
+        "text": "Is it possible to sign up with my work email? I want a separate profile for office supplie",
+        "gold": "create_account",
+        "pred": "registration_problems"
+      },
+      {
+        "text": "How many days does delivery usually take to Marseille?",
+        "gold": "delivery_period",
+        "pred": "check_refund_policy"
+      },
+      {
+        "text": "I'd like to return the shoes from order NS-990341 and be reimbursed please.",
+        "gold": "get_refund",
+        "pred": "check_refund_policy"
+      },
+      {
+        "text": "My card keeps getting refused at checkout even though there's money on the account. What's",
+        "gold": "payment_issue",
+        "pred": "get_refund"
+      },
+      {
+        "text": "Can I order without creating an account? I just want to buy one thing quickly.",
+        "gold": "place_order",
+        "pred": "create_account"
+      },
+      {
+        "text": "Where can I rate the delivery service? The driver was really nice.",
+        "gold": "review",
+        "pred": "delivery_options"
+      },
+      {
+        "text": "I want to add my office as default shipping address.",
+        "gold": "set_up_shipping_address",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "Where is my order NS-128840? It was supposed to arrive yesterday.",
+        "gold": "track_order",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "Can I follow my parcel? I ordered as a guest and didn't keep the email.",
+        "gold": "track_order",
+        "pred": "delivery_period"
+      }
+    ]
+  },
+  {
+    "classifier": "tfidf_logreg+augmentation",
+    "params": "modèle linéaire",
+    "training": "train Bitext complet + augmentation",
+    "bitext": {
+      "accuracy": 0.997,
+      "macro_f1": 0.9972,
+      "n": 1000,
+      "median_latency_ms": 1.7
+    },
+    "realistic": {
+      "accuracy": 0.5926,
+      "macro_f1": 0.5533,
+      "n": 54,
+      "median_latency_ms": 1.7
+    },
+    "realistic_errors": [
+      {
+        "text": "Hi, I placed an order yesterday evening for a coffee machine but my husband already bought",
+        "gold": "cancel_order",
+        "pred": "change_order"
+      },
+      {
+        "text": "I just realised my order is going to my old flat. I moved last week! Can you send it to 12",
+        "gold": "change_shipping_address",
+        "pred": "get_invoice"
+      },
+      {
+        "text": "If I cancel the engraved watch I ordered, will I have to pay something? Production may hav",
+        "gold": "check_cancellation_fee",
+        "pred": "place_order"
+      },
+      {
+        "text": "Is there any penalty for cancelling an order? I don't want surprises on my card.",
+        "gold": "check_cancellation_fee",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Do you take PayPal? My bank card is blocked and I really want to order today.",
+        "gold": "check_payment_methods",
+        "pred": "place_order"
+      },
+      {
+        "text": "Hello, can I pay in several times for a sofa that costs 600 euros?",
+        "gold": "check_payment_methods",
+        "pred": "place_order"
+      },
+      {
+        "text": "I bought a jacket 3 weeks ago, I wore it once and it's too small. Can I still send it back",
+        "gold": "check_refund_policy",
+        "pred": "get_refund"
+      },
+      {
+        "text": "This is the third time my delivery is late and nobody answers my emails. I am really disap",
+        "gold": "complaint",
+        "pred": "contact_customer_service"
+      },
+      {
+        "text": "Your delivery guy left my parcel in the rain in front of the building and the box was dest",
+        "gold": "complaint",
+        "pred": "delivery_options"
+      },
+      {
+        "text": "What are your opening hours? I tried calling at 7pm and nobody picked up.",
+        "gold": "contact_customer_service",
+        "pred": "create_account"
+      },
+      {
+        "text": "can a human look at my case please, the automatic answers don't help at all",
+        "gold": "contact_human_agent",
+        "pred": "check_invoice"
+      },
+      {
+        "text": "Is it possible to sign up with my work email? I want a separate profile for office supplie",
+        "gold": "create_account",
+        "pred": "registration_problems"
+      },
+      {
+        "text": "How many days does delivery usually take to Marseille?",
+        "gold": "delivery_period",
+        "pred": "check_refund_policy"
+      },
+      {
+        "text": "I'd like to return the shoes from order NS-990341 and be reimbursed please.",
+        "gold": "get_refund",
+        "pred": "change_order"
+      },
+      {
+        "text": "My card keeps getting refused at checkout even though there's money on the account. What's",
+        "gold": "payment_issue",
+        "pred": "edit_account"
+      },
+      {
+        "text": "Can I order without creating an account? I just want to buy one thing quickly.",
+        "gold": "place_order",
+        "pred": "create_account"
+      },
+      {
+        "text": "Where can I rate the delivery service? The driver was really nice.",
+        "gold": "review",
+        "pred": "delivery_options"
+      },
+      {
+        "text": "I want to add my office as default shipping address.",
+        "gold": "set_up_shipping_address",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "I have a personal and a business account with you, how do I go from one to the other?",
+        "gold": "switch_account",
+        "pred": "edit_account"
+      },
+      {
+        "text": "Where is my order NS-128840? It was supposed to arrive yesterday.",
+        "gold": "track_order",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "Can I follow my parcel? I ordered as a guest and didn't keep the email.",
+        "gold": "track_order",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "Has my refund for order NS-337102 been processed yet?",
+        "gold": "track_refund",
+        "pred": "change_order"
+      }
+    ]
+  },
+  {
+    "classifier": "slm_lora",
+    "params": "496 M, 2.2 M entraînés",
+    "training": "4000 exemples, 1 époque, cpu",
+    "ram_mb": 2341,
+    "bitext": {
+      "accuracy": 0.988,
+      "macro_f1": 0.9879,
+      "n": 1000,
+      "median_latency_ms": 160.8
+    },
+    "realistic": {
+      "accuracy": 0.4444,
+      "macro_f1": 0.4033,
+      "n": 54,
+      "median_latency_ms": 154.9
+    },
+    "realistic_errors": [
+      {
+        "text": "Hi, I placed an order yesterday evening for a coffee machine but my husband already bought",
+        "gold": "cancel_order",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "pls dont send my order NS-220931 anymore, i changed my mind, i dont want it",
+        "gold": "cancel_order",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "Can I add a second phone case to the order I made this morning instead of paying shipping ",
+        "gold": "change_order",
+        "pred": "set_up_shipping_address"
+      },
+      {
+        "text": "I just realised my order is going to my old flat. I moved last week! Can you send it to 12",
+        "gold": "change_shipping_address",
+        "pred": "set_up_shipping_address"
+      },
+      {
+        "text": "wrong address on order NS-778120, the street number is 14 not 41, can it be fixed before d",
+        "gold": "change_shipping_address",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "If I cancel the engraved watch I ordered, will I have to pay something? Production may hav",
+        "gold": "check_cancellation_fee",
+        "pred": "check_invoice"
+      },
+      {
+        "text": "Is there any penalty for cancelling an order? I don't want surprises on my card.",
+        "gold": "check_cancellation_fee",
+        "pred": "delete_account"
+      },
+      {
+        "text": "The invoice for order NS-640021 says 89.90 but I paid 79.90 with a promo code. Can you che",
+        "gold": "check_invoice",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "I got two invoices for one order, is that normal? I'm confused about which one to give my ",
+        "gold": "check_invoice",
+        "pred": "contact_customer_service"
+      },
+      {
+        "text": "Do you take PayPal? My bank card is blocked and I really want to order today.",
+        "gold": "check_payment_methods",
+        "pred": "place_order"
+      },
+      {
+        "text": "Hello, can I pay in several times for a sofa that costs 600 euros?",
+        "gold": "check_payment_methods",
+        "pred": "place_order"
+      },
+      {
+        "text": "I bought a jacket 3 weeks ago, I wore it once and it's too small. Can I still send it back",
+        "gold": "check_refund_policy",
+        "pred": "get_refund"
+      },
+      {
+        "text": "what's your return policy for opened software? the licence doesn't work on my mac",
+        "gold": "check_refund_policy",
+        "pred": "delete_account"
+      },
+      {
+        "text": "This is the third time my delivery is late and nobody answers my emails. I am really disap",
+        "gold": "complaint",
+        "pred": "contact_customer_service"
+      },
+      {
+        "text": "Your delivery guy left my parcel in the rain in front of the building and the box was dest",
+        "gold": "complaint",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "can a human look at my case please, the automatic answers don't help at all",
+        "gold": "contact_human_agent",
+        "pred": "check_invoice"
+      },
+      {
+        "text": "Is it possible to sign up with my work email? I want a separate profile for office supplie",
+        "gold": "create_account",
+        "pred": "contact_customer_service"
+      },
+      {
+        "text": "Do you deliver to pickup points? I'm never home during the day.",
+        "gold": "delivery_options",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "I ordered as a guest and never received any invoice. Can you send it to me?",
+        "gold": "get_invoice",
+        "pred": "check_refund_policy"
+      },
+      {
+        "text": "The toaster I received doesn't heat at all. I want my money back, not a replacement.",
+        "gold": "get_refund",
+        "pred": "change_order"
+      },
+      {
+        "text": "I'd like to get your newsletter to hear about the sales first.",
+        "gold": "newsletter_subscription",
+        "pred": "contact_customer_service"
+      },
+      {
+        "text": "I was charged twice for order NS-412876! Two identical payments of 54.90 on my bank statem",
+        "gold": "payment_issue",
+        "pred": "delete_account"
+      },
+      {
+        "text": "My card keeps getting refused at checkout even though there's money on the account. What's",
+        "gold": "payment_issue",
+        "pred": "contact_customer_service"
+      },
+      {
+        "text": "Can I order without creating an account? I just want to buy one thing quickly.",
+        "gold": "place_order",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "I want to buy 3 office chairs for my team, how do I place the order?",
+        "gold": "place_order",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "Every time I try to sign up it says my email is already in use but I never created an acco",
+        "gold": "registration_problems",
+        "pred": "create_account"
+      },
+      {
+        "text": "The confirmation link in the sign-up email says it has expired. What do I do?",
+        "gold": "registration_problems",
+        "pred": "newsletter_subscription"
+      },
+      {
+        "text": "Where can I rate the delivery service? The driver was really nice.",
+        "gold": "review",
+        "pred": "delivery_options"
+      },
+      {
+        "text": "I want to add my office as default shipping address.",
+        "gold": "set_up_shipping_address",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "Where is my order NS-128840? It was supposed to arrive yesterday.",
+        "gold": "track_order",
+        "pred": "delivery_period"
+      }
+    ]
+  },
+  {
+    "classifier": "slm_lora+augmentation",
+    "params": "496 M, 2.2 M entraînés",
+    "training": "4000 exemples, 1 époque, cpu",
+    "ram_mb": 1944,
+    "bitext": {
+      "accuracy": 0.982,
+      "macro_f1": 0.9824,
+      "n": 1000,
+      "median_latency_ms": 161.3
+    },
+    "realistic": {
+      "accuracy": 0.6852,
+      "macro_f1": 0.6407,
+      "n": 54,
+      "median_latency_ms": 214.9
+    },
+    "realistic_errors": [
+      {
+        "text": "Hi, I placed an order yesterday evening for a coffee machine but my husband already bought",
+        "gold": "cancel_order",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "pls dont send my order NS-220931 anymore, i changed my mind, i dont want it",
+        "gold": "cancel_order",
+        "pred": "change_order"
+      },
+      {
+        "text": "Can I add a second phone case to the order I made this morning instead of paying shipping ",
+        "gold": "change_order",
+        "pred": "set_up_shipping_address"
+      },
+      {
+        "text": "I just realised my order is going to my old flat. I moved last week! Can you send it to 12",
+        "gold": "change_shipping_address",
+        "pred": "set_up_shipping_address"
+      },
+      {
+        "text": "If I cancel the engraved watch I ordered, will I have to pay something? Production may hav",
+        "gold": "check_cancellation_fee",
+        "pred": "track_order"
+      },
+      {
+        "text": "Is there any penalty for cancelling an order? I don't want surprises on my card.",
+        "gold": "check_cancellation_fee",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "I got two invoices for one order, is that normal? I'm confused about which one to give my ",
+        "gold": "check_invoice",
+        "pred": "get_invoice"
+      },
+      {
+        "text": "I bought a jacket 3 weeks ago, I wore it once and it's too small. Can I still send it back",
+        "gold": "check_refund_policy",
+        "pred": "get_refund"
+      },
+      {
+        "text": "what's your return policy for opened software? the licence doesn't work on my mac",
+        "gold": "check_refund_policy",
+        "pred": "delete_account"
+      },
+      {
+        "text": "This is the third time my delivery is late and nobody answers my emails. I am really disap",
+        "gold": "complaint",
+        "pred": "contact_customer_service"
+      },
+      {
+        "text": "Your delivery guy left my parcel in the rain in front of the building and the box was dest",
+        "gold": "complaint",
+        "pred": "delivery_period"
+      },
+      {
+        "text": "can a human look at my case please, the automatic answers don't help at all",
+        "gold": "contact_human_agent",
+        "pred": "check_invoice"
+      },
+      {
+        "text": "If I order now, will I receive the package before Saturday with standard shipping?",
+        "gold": "delivery_period",
+        "pred": "delivery_options"
+      },
+      {
+        "text": "Can I order without creating an account? I just want to buy one thing quickly.",
+        "gold": "place_order",
+        "pred": "create_account"
+      },
+      {
+        "text": "Where can I rate the delivery service? The driver was really nice.",
+        "gold": "review",
+        "pred": "delivery_options"
+      },
+      {
+        "text": "Can I follow my parcel? I ordered as a guest and didn't keep the email.",
+        "gold": "track_order",
+        "pred": "create_account"
+      },
+      {
+        "text": "I returned an item two weeks ago and still haven't seen the refund on my card. Can you che",
+        "gold": "track_refund",
+        "pred": "get_refund"
+      }
+    ]
+  },
+  {
+    "classifier": "zero_shot:Qwen2.5-0.5B-Instruct",
+    "params": "Qwen/Qwen2.5-0.5B-Instruct",
+    "training": "aucun (prompt)",
+    "bitext": {
+      "accuracy": 0.27,
+      "macro_f1": 0.2323,
+      "n": 100,
+      "median_latency_ms": 1448.4
+    },
+    "realistic": {
+      "accuracy": 0.2037,
+      "macro_f1": 0.2054,
+      "n": 54,
+      "median_latency_ms": 1512.8
+    },
+    "realistic_errors": [
+      {
+        "text": "I ordered the blue backpack but I actually wanted the black one, same size. The order is N",
+        "gold": "change_order",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Can I add a second phone case to the order I made this morning instead of paying shipping ",
+        "gold": "change_order",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "I just realised my order is going to my old flat. I moved last week! Can you send it to 12",
+        "gold": "change_shipping_address",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "If I cancel the engraved watch I ordered, will I have to pay something? Production may hav",
+        "gold": "check_cancellation_fee",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Is there any penalty for cancelling an order? I don't want surprises on my card.",
+        "gold": "check_cancellation_fee",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "I got two invoices for one order, is that normal? I'm confused about which one to give my ",
+        "gold": "check_invoice",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Do you take PayPal? My bank card is blocked and I really want to order today.",
+        "gold": "check_payment_methods",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Hello, can I pay in several times for a sofa that costs 600 euros?",
+        "gold": "check_payment_methods",
+        "pred": "unknown"
+      },
+      {
+        "text": "I bought a jacket 3 weeks ago, I wore it once and it's too small. Can I still send it back",
+        "gold": "check_refund_policy",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "what's your return policy for opened software? the licence doesn't work on my mac",
+        "gold": "check_refund_policy",
+        "pred": "unknown"
+      },
+      {
+        "text": "This is the third time my delivery is late and nobody answers my emails. I am really disap",
+        "gold": "complaint",
+        "pred": "unknown"
+      },
+      {
+        "text": "Your delivery guy left my parcel in the rain in front of the building and the box was dest",
+        "gold": "complaint",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "What are your opening hours? I tried calling at 7pm and nobody picked up.",
+        "gold": "contact_customer_service",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "How do I reach your support team? I can't find a phone number anywhere on the website.",
+        "gold": "contact_customer_service",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "can a human look at my case please, the automatic answers don't help at all",
+        "gold": "contact_human_agent",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Is it possible to sign up with my work email? I want a separate profile for office supplie",
+        "gold": "create_account",
+        "pred": "unknown"
+      },
+      {
+        "text": "Please remove my account and all my data, I won't be shopping with you anymore.",
+        "gold": "delete_account",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "How can I close my NovaShop account? I have no order in progress.",
+        "gold": "delete_account",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Do you deliver to pickup points? I'm never home during the day.",
+        "gold": "delivery_options",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "Can you ship to Belgium, and is there an express option?",
+        "gold": "delivery_options",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "If I order now, will I receive the package before Saturday with standard shipping?",
+        "gold": "delivery_period",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "I got married and changed my last name, how do I update it on my profile?",
+        "gold": "edit_account",
+        "pred": "unknown"
+      },
+      {
+        "text": "need to change the phone number on my account, the old one is not mine anymore",
+        "gold": "edit_account",
+        "pred": "unknown"
+      },
+      {
+        "text": "My company needs an invoice for the laptop I bought last month, where can I download it?",
+        "gold": "get_invoice",
+        "pred": "unknown"
+      },
+      {
+        "text": "I ordered as a guest and never received any invoice. Can you send it to me?",
+        "gold": "get_invoice",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "The toaster I received doesn't heat at all. I want my money back, not a replacement.",
+        "gold": "get_refund",
+        "pred": "complaint"
+      },
+      {
+        "text": "I'd like to return the shoes from order NS-990341 and be reimbursed please.",
+        "gold": "get_refund",
+        "pred": "change_order"
+      },
+      {
+        "text": "Stop sending me promotional emails every day, how do I unsubscribe?",
+        "gold": "newsletter_subscription",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "I was charged twice for order NS-412876! Two identical payments of 54.90 on my bank statem",
+        "gold": "payment_issue",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "My card keeps getting refused at checkout even though there's money on the account. What's",
+        "gold": "payment_issue",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Can I order without creating an account? I just want to buy one thing quickly.",
+        "gold": "place_order",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "I forgot my password and the reset email never arrives.",
+        "gold": "recover_password",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "locked out of my account, cant remember the password i used",
+        "gold": "recover_password",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Every time I try to sign up it says my email is already in use but I never created an acco",
+        "gold": "registration_problems",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "The confirmation link in the sign-up email says it has expired. What do I do?",
+        "gold": "registration_problems",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Where can I rate the delivery service? The driver was really nice.",
+        "gold": "review",
+        "pred": "unknown"
+      },
+      {
+        "text": "How do I save a second delivery address for my parents' house in my account?",
+        "gold": "set_up_shipping_address",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "I want to add my office as default shipping address.",
+        "gold": "set_up_shipping_address",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "I have a personal and a business account with you, how do I go from one to the other?",
+        "gold": "switch_account",
+        "pred": "unknown"
+      },
+      {
+        "text": "Where is my order NS-128840? It was supposed to arrive yesterday.",
+        "gold": "track_order",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Can I follow my parcel? I ordered as a guest and didn't keep the email.",
+        "gold": "track_order",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "I returned an item two weeks ago and still haven't seen the refund on my card. Can you che",
+        "gold": "track_refund",
+        "pred": "check_refund_policy"
+      },
+      {
+        "text": "Has my refund for order NS-337102 been processed yet?",
+        "gold": "track_refund",
+        "pred": "unknown"
+      }
+    ]
+  },
+  {
+    "classifier": "zero_shot:Qwen2.5-1.5B-Instruct",
+    "params": "Qwen/Qwen2.5-1.5B-Instruct",
+    "training": "aucun (prompt)",
+    "bitext": {
+      "accuracy": 0.59,
+      "macro_f1": 0.4793,
+      "n": 100,
+      "median_latency_ms": 4769.4
+    },
+    "realistic": {
+      "accuracy": 0.537,
+      "macro_f1": 0.4955,
+      "n": 54,
+      "median_latency_ms": 6601.6
+    },
+    "realistic_errors": [
+      {
+        "text": "If I cancel the engraved watch I ordered, will I have to pay something? Production may hav",
+        "gold": "check_cancellation_fee",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Is there any penalty for cancelling an order? I don't want surprises on my card.",
+        "gold": "check_cancellation_fee",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Hello, can I pay in several times for a sofa that costs 600 euros?",
+        "gold": "check_payment_methods",
+        "pred": "payment_issue"
+      },
+      {
+        "text": "I bought a jacket 3 weeks ago, I wore it once and it's too small. Can I still send it back",
+        "gold": "check_refund_policy",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "Your delivery guy left my parcel in the rain in front of the building and the box was dest",
+        "gold": "complaint",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "What are your opening hours? I tried calling at 7pm and nobody picked up.",
+        "gold": "contact_customer_service",
+        "pred": "delivery_options"
+      },
+      {
+        "text": "can a human look at my case please, the automatic answers don't help at all",
+        "gold": "contact_human_agent",
+        "pred": "contact_customer_service"
+      },
+      {
+        "text": "I'd like to open an account so I can follow my orders more easily, how do I do that?",
+        "gold": "create_account",
+        "pred": "registration_problems"
+      },
+      {
+        "text": "Is it possible to sign up with my work email? I want a separate profile for office supplie",
+        "gold": "create_account",
+        "pred": "registration_problems"
+      },
+      {
+        "text": "Can you ship to Belgium, and is there an express option?",
+        "gold": "delivery_options",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "I got married and changed my last name, how do I update it on my profile?",
+        "gold": "edit_account",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "need to change the phone number on my account, the old one is not mine anymore",
+        "gold": "edit_account",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "I ordered as a guest and never received any invoice. Can you send it to me?",
+        "gold": "get_invoice",
+        "pred": "check_invoice"
+      },
+      {
+        "text": "The toaster I received doesn't heat at all. I want my money back, not a replacement.",
+        "gold": "get_refund",
+        "pred": "check_refund_policy"
+      },
+      {
+        "text": "I'd like to return the shoes from order NS-990341 and be reimbursed please.",
+        "gold": "get_refund",
+        "pred": "check_refund_policy"
+      },
+      {
+        "text": "Stop sending me promotional emails every day, how do I unsubscribe?",
+        "gold": "newsletter_subscription",
+        "pred": "complaint"
+      },
+      {
+        "text": "I was charged twice for order NS-412876! Two identical payments of 54.90 on my bank statem",
+        "gold": "payment_issue",
+        "pred": "cancel_order"
+      },
+      {
+        "text": "The confirmation link in the sign-up email says it has expired. What do I do?",
+        "gold": "registration_problems",
+        "pred": "unknown"
+      },
+      {
+        "text": "Where can I rate the delivery service? The driver was really nice.",
+        "gold": "review",
+        "pred": "track_order"
+      },
+      {
+        "text": "How do I save a second delivery address for my parents' house in my account?",
+        "gold": "set_up_shipping_address",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "I want to add my office as default shipping address.",
+        "gold": "set_up_shipping_address",
+        "pred": "change_shipping_address"
+      },
+      {
+        "text": "I have a personal and a business account with you, how do I go from one to the other?",
+        "gold": "switch_account",
+        "pred": "unknown"
+      },
+      {
+        "text": "Where is my order NS-128840? It was supposed to arrive yesterday.",
+        "gold": "track_order",
+        "pred": "unknown"
+      },
+      {
+        "text": "I returned an item two weeks ago and still haven't seen the refund on my card. Can you che",
+        "gold": "track_refund",
+        "pred": "check_refund_policy"
+      },
+      {
+        "text": "Has my refund for order NS-337102 been processed yet?",
+        "gold": "track_refund",
+        "pred": "check_refund_policy"
+      }
+    ]
+  }
+]

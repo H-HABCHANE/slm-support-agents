@@ -18,7 +18,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from support_agent.config import resolve
 from support_agent.grounding import VERIFY_PROMPT, NLIVerifier, parse_verdict
-from support_agent.kb import format_context, load_kb_documents
+from support_agent.kb import format_context, get_embeddings, load_kb_documents
 from support_agent.llm import get_chat_model
 
 # Question inversée : « y a-t-il une erreur ? ». Les petits modèles ont tendance à répondre toujours
@@ -65,8 +65,10 @@ def main() -> None:
     cases = build_cases()
     print(f"{len(cases)} cas de calibration ({len(cases) // 2} fidèles, {len(cases) // 2} corrompus)")
     results = []
+    emb = get_embeddings()
     for name, verifier in [("NLI DeBERTa-v3-xsmall seul", NLIVerifier(check_numbers=False)),
-                           ("NLI + contrôle des chiffres", NLIVerifier())]:
+                           ("NLI + contrôle des chiffres", NLIVerifier()),
+                           ("NLI + chiffres + prémisses proches", NLIVerifier(embeddings=emb))]:
         accepts = [verifier(c["answer"], [c["doc"]]) is None for c in cases]
         res = {"model": "cross-encoder/nli-deberta-v3-xsmall", "prompt": name, **score(cases, accepts)}
         results.append(res)

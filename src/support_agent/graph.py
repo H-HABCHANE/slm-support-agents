@@ -75,7 +75,7 @@ def _timed(name: str, fn):
 
 def make_verifier(kind: str, chat_model):
     if kind == "nli":
-        return NLIVerifier()
+        return NLIVerifier()  # filtre « prémisses proches » : option non retenue (reports/verifier_real.json)
     if kind == "llm_judge":
         return LLMJudgeVerifier(chat_model)
     raise ValueError(f"Vérificateur inconnu : {kind}")

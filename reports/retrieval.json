@@ -1,0 +1,42 @@
+{
+  "texte seul | vectoriel": {
+    "hit@1": 0.6667,
+    "hit@3": 0.8704,
+    "mrr@3": 0.7562,
+    "median_latency_ms": 12.7
+  },
+  "texte seul | vectoriel + reranking": {
+    "hit@1": 0.5926,
+    "hit@3": 0.8889,
+    "mrr@3": 0.7253,
+    "median_latency_ms": 399.0
+  },
+  "texte + intention prédite | vectoriel": {
+    "hit@1": 0.6667,
+    "hit@3": 0.8889,
+    "mrr@3": 0.7716,
+    "median_latency_ms": 19.3
+  },
+  "texte + intention prédite | vectoriel + reranking": {
+    "hit@1": 0.7407,
+    "hit@3": 0.8889,
+    "mrr@3": 0.8117,
+    "median_latency_ms": 464.4
+  },
+  "texte + intention réelle (plafond) | vectoriel": {
+    "hit@1": 0.8148,
+    "hit@3": 1.0,
+    "mrr@3": 0.8981,
+    "median_latency_ms": 18.8
+  },
+  "texte + intention réelle (plafond) | vectoriel + reranking": {
+    "hit@1": 0.9074,
+    "hit@3": 1.0,
+    "mrr@3": 0.9537,
+    "median_latency_ms": 411.9
+  },
+  "n_tickets": 54,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "rerank_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "classifier": "lora_aug"
+}

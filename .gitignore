@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 logs/
-models/lora-intent/checkpoints/
+models/*/checkpoints/
 *.safetensors
 !models/lora-intent/adapter_model.safetensors
+!models/lora-intent-aug/adapter_model.safetensors
